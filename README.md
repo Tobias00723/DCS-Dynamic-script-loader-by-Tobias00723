@@ -1,6 +1,5 @@
-<h1 align="center">TGFB Dynamic script loader</h1>
-<h3 align="center">Information about script</h3>
-    
+# TGFB TGFB Dynamic script loader
+
     Script by Tobias00723
     from the TGFB server
     Discord : https://discord.gg/hEHd4A3czx
@@ -10,18 +9,38 @@
     These scripts are opensource and free to use for everybody.
     But i would appreaciate some credit if you "borrow" some code ;p
 
-    
 
+## description 
     This script will search in a given directory and load all .lua files
     you can also put some files in a exclude table these .lua files will not be loaded then
 
-    This scripts to provide a fast development prosess because these scripts are dynamicly loaded
-    you just need to restart your mission and all changes of your .lua files are saved and loaded in the mission
+    This scripts to provide a fast development prosess
+    you just need to restart your mission and all changes of your .lua files are saved 
+    and loaded  in the mission
 
     this script should be a drag and drop replacement for all DCS missions
     The scripts are loaded in aphabetical order (order of file explorer by default)
     so but i whould recomment puting all your API files
     like MIST and MOOSE in a .API or API folder
+## Features
+
+- Easy to use and a drop in replacement in all missions
+- Dynamic loading of files
+- Safe and secure way to hide your .lua files
+- Error detection of your files
+- Exclude table for files you dont want to load
+
+
+## Installation
+
+in your mission make a new trigger "on mission start" you can also load it in on a delay if you see fit
+
+![App Screenshot](https://cdn.discordapp.com/attachments/1006176514896826489/1200928050800504932/image.png?ex=65c7f667&is=65b58167&hm=6fe7a4b5954bb0bcde12642a601c1fe8b06be83f54e44e3571d027c6d9231a81&)
+
+after that simple "do file" and select the "DCS_Dynamic_Script_loader_Tobias00723.lua" file
+it should look something like this : 
+
+![App Screenshot](https://cdn.discordapp.com/attachments/1006176514896826489/1200928830060253304/image.png?ex=65c7f721&is=65b58221&hm=0133aebf6fe631179bc1b6fe5fe0bc4d9e65252f3a17cf642d27fe68990a4af9&)
 
     
 
