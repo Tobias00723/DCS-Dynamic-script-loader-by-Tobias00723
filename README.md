@@ -33,12 +33,12 @@
 
 ## Installation
 
-First we need to de-sanitize your MissionScripting.lua file
-located in your DCS install directory (DCSWorld\Scripts\MissionScripting.lua)
-DCS likes to revert this after some updates the script will tell you if you dit this wrong :)
-you can replace the MissionScripting.lua file with the one included in the repo
-
-in your mission make a new trigger "on mission start" you can also load it in on a delay if you see fit
+    First we need to de-sanitize your MissionScripting.lua file
+    located in your DCS install directory (DCSWorld\Scripts\MissionScripting.lua)
+    DCS likes to revert this after some updates the script will tell you if you dit this wrong :)
+    you can replace the MissionScripting.lua file with the one included in the repo
+    
+    in your mission make a new trigger "on mission start" you can also load it in on a delay if you see fit
 
 ![App Screenshot](https://cdn.discordapp.com/attachments/1006176514896826489/1200928050800504932/image.png?ex=65c7f667&is=65b58167&hm=6fe7a4b5954bb0bcde12642a601c1fe8b06be83f54e44e3571d027c6d9231a81&)
 
