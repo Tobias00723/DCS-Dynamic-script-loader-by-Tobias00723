@@ -195,12 +195,12 @@ if lfs then
 
         local found = false
         for i, Filename in pairs(BadScripts) do
-            if Filename == "scriptLoader_ByToby.lua" then
+            if Filename == "DCS_Dynamic_Script_loader_Tobias00723.lua" then
                 found = true
             end
         end
         if not found then
-            table.insert(BadScripts , "scriptLoader_ByToby.lua")
+            table.insert(BadScripts , "DCS_Dynamic_Script_loader_Tobias00723.lua")
         end
         -- Function to check if a given file has a Lua extension
         local function isLuaFile(filename)
