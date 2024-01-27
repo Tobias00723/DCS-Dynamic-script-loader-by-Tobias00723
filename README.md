@@ -2,7 +2,7 @@
 
     Script by Tobias00723
     from the TGFB server
-    Discord : https://discord.gg/hEHd4A3czx
+    Discord : <a href="https://discord.gg/hEHd4A3czx">https://discord.gg/hEHd4A3czx/a>
     any questions?                   ^^
     find me on my discord server     ^^
 
