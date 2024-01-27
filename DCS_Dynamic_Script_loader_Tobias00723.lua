@@ -37,7 +37,7 @@ Silent_mode = false
 --put your directory inbetween the "" where you have all your lua files in.
 --Warning : this script will also search in the subdirectories!
 
-Dir = lfs.writedir() .. "Missions/Campaigns/en/SDR_HG_Dynamic/HipGames_Scripts/"
+Dir = lfs.writedir() .. "Missions/your/mission/directory"
 
 --[[
 
