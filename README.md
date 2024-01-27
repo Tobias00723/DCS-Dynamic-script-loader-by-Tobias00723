@@ -8,7 +8,9 @@
     These scripts are opensource and free to use for everybody.
     But i would appreaciate some credit if you "borrow" some code ;p
 
-Discord : https://discord.gg/hEHd4A3czx
+<p align="left">
+<a href="https://discord.gg/hEHd4A3czx" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/discord.svg" alt="hEHd4A3czx" height="30" width="40" /> : https://discord.gg/hEHd4A3czx </a>
+</p>
 
 
 ## description 
