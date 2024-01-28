@@ -120,10 +120,10 @@ function Table_to_string(tbl)
 end
 
 function Init_dynamic_settings(filepath)
-    
+
     trigger.action.outText("Dynamic settings initialized", 15, false)
     local file = io.open(filepath, "w")
-    
+
     if file then
         file:write("Dir = \"" .. tostring(Dir) .. "\"\n\n")
         --file:write("Dynamic_settings = " .. tostring(Dynamic_settings) .. "\n\n")
@@ -163,7 +163,7 @@ if lfs then
         if Dynamic_settings then
             local Setting_dir = lfs.writedir()..'Missions\\Saves\\'
             lfs.mkdir(Setting_dir)
-            
+
             local filepath = 'TGFB_script_loader_settings.lua'
             filepath = Setting_dir..filepath
             local file = io.open(filepath, "r")
@@ -190,6 +190,8 @@ if lfs then
                 Init_dynamic_settings(filepath)
             end
         end
+
+        Dir = Dir:gsub('\\','/')
 
         exclude_not_found = BadScripts
 
@@ -235,6 +237,9 @@ if lfs then
         LuaFilesTable = getLuaFilesInDirectory(Dir)
         TobyLoadFiles(LuaFilesTable)
         if not Silent_mode then
+            if exclude_count == 0 then
+                exclude_count = 1
+            end
             if #exclude_not_found > 0 then
                 trigger.action.outText("'".. File_count - exclude_count - 1 .. "' .lua files loaded!\nAnd excluded '".. exclude_count - 1 .. "' .lua files\n\nWARNING : '" .. #exclude_not_found .. "' excluded .lua files are missed!" , 30, false)
                 for i, missed_exclude in pairs(exclude_not_found) do
@@ -252,4 +257,3 @@ else
     trigger.action.outText("Failed to use lfs" , 60 , false)
     env.error("Failed to init lfs", true)
 end
-

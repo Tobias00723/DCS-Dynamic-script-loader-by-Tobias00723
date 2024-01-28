@@ -22,8 +22,8 @@
     and loaded  in the mission
 
     this script should be a drag and drop replacement for all DCS missions
-    The scripts are loaded in aphabetical order (order of file explorer by default)
-    so but i whould recomment puting all your API files
+    The scripts are loaded in alphabetical order (order of file explorer by default)
+    so but i whould recommend putting all your API files
     like MIST and MOOSE in a .API or API folder
 ## Features
 
