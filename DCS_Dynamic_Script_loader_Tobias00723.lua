@@ -23,7 +23,7 @@ Dynamic_settings = true
 
 --change how the dir as you like, this will create a 'TGFB_script_loader_settings.lua' file in the directory below only if
 --Dynamic_settings is set to true : default is your DCS saved games folder : DCS\Missions\Saves\Script_loader_settings.lua
-Settings_Dir = lfs.writedir()..'Missions\\Saves\\'
+Settings_Dir = lfs.writedir()..'Missions\\Saves'
 
 
 
@@ -178,7 +178,7 @@ if lfs then
             end
             lfs.mkdir(Settings_Dir)
 
-            local filepath = 'TGFB_script_loader_settings.lua'
+            local filepath = '\\TGFB_script_loader_settings.lua'
             filepath = Settings_Dir..filepath
             local file = io.open(filepath, "r")
             if file then
@@ -253,6 +253,9 @@ if lfs then
         if not Silent_mode then
             if exclude_count == 0 then
                 exclude_count = 1
+            end
+            if File_count == 0 then
+                File_count = 2
             end
             if #exclude_not_found > 0 then
                 trigger.action.outText("'".. File_count - exclude_count - 1 .. "' .lua files loaded!\nAnd excluded '".. exclude_count - 1 .. "' .lua files\n\nWARNING : '" .. #exclude_not_found .. "' excluded .lua files are missed!" , 30, false)
