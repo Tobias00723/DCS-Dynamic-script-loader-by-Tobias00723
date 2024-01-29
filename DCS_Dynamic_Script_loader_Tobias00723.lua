@@ -134,7 +134,7 @@ function Init_dynamic_settings(filepath)
 
     if file then
         file:write("Dir = \"" .. tostring(Dir) .. "\"\n\n")
-        file:write("Settings_Dir = \"" .. tostring(Settings_Dir) .. "\"\n\n")
+        --file:write("Settings_Dir = \"" .. tostring(Settings_Dir) .. "\"\n\n")
         --file:write("Dynamic_settings = " .. tostring(Dynamic_settings) .. "\n\n")
         file:write("Silent_mode = " .. tostring(Silent_mode) .. "\n\n")
         file:write("BadScripts = " .. Table_to_string(BadScripts))
