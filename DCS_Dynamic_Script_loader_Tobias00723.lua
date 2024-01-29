@@ -17,8 +17,13 @@
 
 
 --Change to 'true' if you want to load all settings below from a .lua file (so you just need to restard mission to change a setting here)
---Settings file will be located in Your DCS saved games folder : DCS\Missions\Saves\Script_loader_settings.lua
+--Settings file will be located at default in Your DCS saved games folder : DCS\Missions\Saves\Script_loader_settings.lua
 Dynamic_settings = true
+
+
+--change how the dir as you like, this will create a 'TGFB_script_loader_settings.lua' file in the directory below only if
+--Dynamic_settings is set to true : default is your DCS saved games folder : DCS\Missions\Saves\Script_loader_settings.lua
+Settings_Dir = lfs.writedir()..'Missions\\Saves\\'
 
 
 
@@ -38,6 +43,9 @@ Silent_mode = false
 --Warning : this script will also search in the subdirectories!
 
 Dir = lfs.writedir() .. "Missions/your/mission/directory"
+
+
+
 
 --[[
 
@@ -126,6 +134,7 @@ function Init_dynamic_settings(filepath)
 
     if file then
         file:write("Dir = \"" .. tostring(Dir) .. "\"\n\n")
+        file:write("Settings_Dir = \"" .. tostring(Settings_Dir) .. "\"\n\n")
         --file:write("Dynamic_settings = " .. tostring(Dynamic_settings) .. "\n\n")
         file:write("Silent_mode = " .. tostring(Silent_mode) .. "\n\n")
         file:write("BadScripts = " .. Table_to_string(BadScripts))
@@ -158,14 +167,19 @@ end
 if lfs then
     if io then
         trigger.action.outText("Dynamic DCS .lua loading script by : Tobias00723", 30 , false)
+        if not Silent_mode then
+            trigger.action.outText("Searching in : " .. Dir, 15 , false)
+        end
         local File_count = 0
 
         if Dynamic_settings then
-            local Setting_dir = lfs.writedir()..'Missions\\Saves\\'
-            lfs.mkdir(Setting_dir)
+            if not Silent_mode then
+                trigger.action.outText("Settings file located at : " .. Settings_Dir, 15 , false)
+            end
+            lfs.mkdir(Settings_Dir)
 
             local filepath = 'TGFB_script_loader_settings.lua'
-            filepath = Setting_dir..filepath
+            filepath = Settings_Dir..filepath
             local file = io.open(filepath, "r")
             if file then
                 local content = file:read("*a")
