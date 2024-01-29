@@ -23,7 +23,7 @@ Dynamic_settings = true
 
 
 
---change how the dir as you like, this will create a 'TGFB_script_loader_settings.lua' file in the directory below only if
+--change the dir as you like, this will create a 'TGFB_script_loader_settings.lua' file in the directory below only if
 --Dynamic_settings is set to true : default is your DCS saved games folder : DCS\Missions\Saves\Script_loader_settings.lua
 --!!When puting in your directory make sure you use the '/' other wise it will not find the directory
 
