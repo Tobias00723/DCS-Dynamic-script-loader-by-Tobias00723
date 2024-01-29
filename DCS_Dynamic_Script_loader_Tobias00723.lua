@@ -18,29 +18,38 @@
 
 --Change to 'true' if you want to load all settings below from a .lua file (so you just need to restard mission to change a setting here)
 --Settings file will be located at default in Your DCS saved games folder : DCS\Missions\Saves\Script_loader_settings.lua
+
 Dynamic_settings = true
+
 
 
 --change how the dir as you like, this will create a 'TGFB_script_loader_settings.lua' file in the directory below only if
 --Dynamic_settings is set to true : default is your DCS saved games folder : DCS\Missions\Saves\Script_loader_settings.lua
+--!!When puting in your directory make sure you use the '/' other wise it will not find the directory
+
 Settings_Dir = lfs.writedir()..'Missions\\Saves'
 
 
 
 --list all your .lua files here that you dont want to load with the mission
+
 BadScripts = {
     "Example_exlude1.lua",
     "Example_exlude2.lua",
     "Example_exlude3.lua",
 }
 
+
+
 --Change to 'true' to removes the message when scripts are loaded
+
 Silent_mode = false
 
 
 
 --put your directory inbetween the "" where you have all your lua files in.
 --Warning : this script will also search in the subdirectories!
+--!!When puting in your directory make sure you use the '/' other wise it will not find the directory
 
 Dir = lfs.writedir() .. "Missions/your/mission/directory"
 
