@@ -251,7 +251,7 @@ if lfs then
                         local subdirectoryFiles = getLuaFilesInDirectory(fullPath)
                         for _, subfile in ipairs(subdirectoryFiles) do
                             table.insert(luaFiles, subfile)
-                            File_count = File_count + 1
+                            --File_count = File_count + 1
                         end
                     end
                 end
@@ -265,6 +265,9 @@ if lfs then
         if not Silent_mode then
             if exclude_count == 0 then
                 exclude_count = 1
+                File_count = File_count + 2
+            else
+                File_count = File_count + 1
             end
             if File_count == 0 then
                 File_count = 2
