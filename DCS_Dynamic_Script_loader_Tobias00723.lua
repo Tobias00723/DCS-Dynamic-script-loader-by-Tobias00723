@@ -11,7 +11,7 @@
     But i would appreaciate some credit if you "borrow" some code ;p
 
 ]]
-
+if lfs then
 
 
 
@@ -55,7 +55,7 @@ Dir = lfs.writedir() .. "Missions/your/mission/directory"
 
 
 
-
+end
 --[[
 
 
@@ -96,7 +96,7 @@ local function directoryToLuaFileName(path)
     return path:match("[^/]*.lua$")
 end
 
-local function TobyLoadFiles(LuaFilesTable)
+local function LoadFiles(LuaFilesTable)
     for TobyLoops, fileDir in ipairs(LuaFilesTable) do
         local fileName = directoryToLuaFileName(fileDir)
         local badFile = false
@@ -176,15 +176,10 @@ end
 if lfs then
     if io then
         trigger.action.outText("Dynamic DCS .lua loading script by : Tobias00723", 30 , false)
-        if not Silent_mode then
-            trigger.action.outText("Searching in : " .. Dir, 15 , false)
-        end
+
         local File_count = 0
 
         if Dynamic_settings then
-            if not Silent_mode then
-                trigger.action.outText("Settings file located at : " .. Settings_Dir, 15 , false)
-            end
             lfs.mkdir(Settings_Dir)
 
             local filepath = '\\TGFB_script_loader_settings.lua'
@@ -212,11 +207,17 @@ if lfs then
             else
                 Init_dynamic_settings(filepath)
             end
+
+            if not Silent_mode then
+                trigger.action.outText("Settings file located at : " .. Settings_Dir, 15 , false)
+            end
         end
 
         Dir = Dir:gsub('\\','/')
 
-        exclude_not_found = BadScripts
+        if not Silent_mode then
+            trigger.action.outText("Searching in : " .. Dir, 15 , false)
+        end
 
         local found = false
         for i, Filename in pairs(BadScripts) do
@@ -227,6 +228,8 @@ if lfs then
         if not found then
             table.insert(BadScripts , "DCS_Dynamic_Script_loader_Tobias00723.lua")
         end
+
+        exclude_not_found = BadScripts
         -- Function to check if a given file has a Lua extension
         local function isLuaFile(filename)
             return filename:match("%.lua$") ~= nil
@@ -258,13 +261,20 @@ if lfs then
         end
 
         LuaFilesTable = getLuaFilesInDirectory(Dir)
-        TobyLoadFiles(LuaFilesTable)
+        LoadFiles(LuaFilesTable)
         if not Silent_mode then
             if exclude_count == 0 then
                 exclude_count = 1
             end
             if File_count == 0 then
                 File_count = 2
+            end
+            local index = 0
+            for i, file_name in pairs(exclude_not_found) do
+                index = index + 1
+                if file_name == "DCS_Dynamic_Script_loader_Tobias00723.lua" then
+                    table.remove(exclude_not_found, index)
+                end
             end
             if #exclude_not_found > 0 then
                 trigger.action.outText("'".. File_count - exclude_count - 1 .. "' .lua files loaded!\nAnd excluded '".. exclude_count - 1 .. "' .lua files\n\nWARNING : '" .. #exclude_not_found .. "' excluded .lua files are missed!" , 30, false)
