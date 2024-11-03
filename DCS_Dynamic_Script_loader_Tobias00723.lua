@@ -23,7 +23,7 @@ Dynamic_settings = true
 
 
 
---change the dir as you like, this will create a 'TGFB_script_loader_settings.lua' file in the directory below only if
+--change the dir as you like, this will create a 'TGFB_script_loader_settings.lua' or 'File_name.lua' (See below) file in the directory below only if
 --Dynamic_settings is set to true : default is your DCS saved games folder : DCS\Missions\Saves\Script_loader_settings.lua
 --!!When puting in your directory make sure you use the '/' other wise it will not find the directory
 
@@ -55,12 +55,21 @@ Dir = lfs.writedir() .. "Missions/your/mission/directory"
 
 
 
+--settings files name if you wish to use this in multible missions you can change the settings file name here
+--this will prevent from loading the wrong files in a mission (.lua will be added after your file name)
+--Default will be "TGFB_script_loader_settings.lua"
+--NOTE : Please use a string format : "String", the quotes are importand!
+File_name = nil
+
+
+
+
 end
 --[[
 
 
     DO NOT EDIT BELOW THIS LINE     DO NOT EDIT BELOW THIS LINE     DO NOT EDIT BELOW THIS LINE
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 
 
@@ -97,7 +106,7 @@ local function directoryToLuaFileName(path)
 end
 
 local function LoadFiles(LuaFilesTable)
-    for TobyLoops, fileDir in ipairs(LuaFilesTable) do
+    for _, fileDir in ipairs(LuaFilesTable) do
         local fileName = directoryToLuaFileName(fileDir)
         local badFile = false
         local counter = 0
@@ -126,17 +135,17 @@ local function LoadFiles(LuaFilesTable)
     end
 end
 
-function Table_to_string(tbl)
+local function Table_to_string(tbl)
     local str = "{\n"
 
-    for j, Content in pairs(tbl) do
+    for _, Content in pairs(tbl) do
         local new_str = "\t\"" .. tostring(Content) .. "\",\n"
         str = str .. new_str
     end
     return str .. "}"
 end
 
-function Init_dynamic_settings(filepath)
+local function Init_dynamic_settings(filepath)
 
     trigger.action.outText("Dynamic settings initialized", 15, false)
     local file = io.open(filepath, "w")
@@ -156,7 +165,7 @@ function Init_dynamic_settings(filepath)
                 if success then
                     local success2, execution_error = pcall(success)
                     if not success2 then
-                        trigger.action.outText("Failed to execute " .. fileDir .. "\n\n File : 'TGFB_script_loader_settings.lua'\n\n Error msg: " .. execution_error, 180, false)
+                        trigger.action.outText("Failed to execute " .. fileDir .. "\n\n File : \'" .. File_name .. ".lua'\n\n Error msg: " .. execution_error, 180, false)
                     end
 
                     if not Silent_mode then
@@ -182,7 +191,9 @@ if lfs then
         if Dynamic_settings then
             lfs.mkdir(Settings_Dir)
 
-            local filepath = '\\TGFB_script_loader_settings.lua'
+            File_name = File_name or "TGFB_script_loader_settings"
+
+            local filepath = '\\' .. File_name .. ".lua"
             filepath = Settings_Dir..filepath
             local file = io.open(filepath, "r")
             if file then
@@ -192,7 +203,7 @@ if lfs then
                     if success then
                         local success2, execution_error = pcall(success)
                         if not success2 then
-                            trigger.action.outText("Failed to execute " .. fileDir .. "\n\n File : 'TGFB_script_loader_settings.lua'\n\n Error msg: " .. execution_error, 180, false)
+                            trigger.action.outText("Failed to execute " .. fileDir .. "\n\n File : \'" .. File_name ..".lua'\n\n Error msg: " .. execution_error, 180, false)
                         end
                         if not Silent_mode then
                             trigger.action.outText("Dynamic settings enabled" , 15 , false)
@@ -220,7 +231,7 @@ if lfs then
         end
 
         local found = false
-        for i, Filename in pairs(BadScripts) do
+        for _, Filename in pairs(BadScripts) do
             if Filename == "DCS_Dynamic_Script_loader_Tobias00723.lua" then
                 found = true
             end
@@ -273,7 +284,7 @@ if lfs then
                 File_count = 2
             end
             local index = 0
-            for i, file_name in pairs(exclude_not_found) do
+            for _, file_name in pairs(exclude_not_found) do
                 index = index + 1
                 if file_name == "DCS_Dynamic_Script_loader_Tobias00723.lua" then
                     table.remove(exclude_not_found, index)
@@ -281,7 +292,7 @@ if lfs then
             end
             if #exclude_not_found > 0 then
                 trigger.action.outText("'".. File_count - exclude_count - 1 .. "' .lua files loaded!\nAnd excluded '".. exclude_count - 1 .. "' .lua files\n\nWARNING : '" .. #exclude_not_found .. "' excluded .lua files are missed!" , 30, false)
-                for i, missed_exclude in pairs(exclude_not_found) do
+                for _, missed_exclude in pairs(exclude_not_found) do
                     trigger.action.outText("Missed exlude : '" .. missed_exclude .."'", 30, false)
                 end
             else
